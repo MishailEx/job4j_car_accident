@@ -17,4 +17,8 @@ public class AccidentMem {
     public HashMap<Integer, Accident> getAllAccident() {
         return accidents;
     }
+
+    public Accident findById(int id) {
+        return accidents.get(id);
+    }
 }

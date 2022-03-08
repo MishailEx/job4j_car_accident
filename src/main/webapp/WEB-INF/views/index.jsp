@@ -38,6 +38,7 @@
             <td>${acc.value.name}</td>
             <td>${acc.value.text}</td>
             <td>${acc.value.address}</td>
+            <td><a href="<c:url value='/update?id=${acc.key}'/>">Изменить</a></td>
         </tr>
     </c:forEach>
     </tbody>

@@ -5,14 +5,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.job4j.accident.model.Accident;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 @Controller
 public class IndexControl {
     @GetMapping("/")
     public String index(Model model) {
-        List<Accident> accidents = List.of(new Accident("oleg", "parking", "lenina 62"),
-                new Accident("vlad", "parking", "truhina 62"));
+        HashMap<Integer, Accident> accidents = new LinkedHashMap<>();
+        accidents.put(1,new Accident("aa", "as", "rr"));
+        accidents.put(2,new Accident("pp", "ii", "yy"));
         model.addAttribute("accidents", accidents);
         return "index";
     }

@@ -24,20 +24,24 @@
 <table class="table">
     <thead>
     <tr>
+        <th scope="col">Номер</th>
         <th scope="col">Имя пользователя</th>
         <th scope="col">Текст заявления</th>
         <th scope="col">Адрес правонарушения</th>
+        <th scope="col">Редактировать</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="acc" items="${accidents}">
         <tr>
-            <td>${acc.name}</td>
-            <td>${acc.text}</td>
-            <td>${acc.address}</td>
+            <td>${acc.key}</td>
+            <td>${acc.value.name}</td>
+            <td>${acc.value.text}</td>
+            <td>${acc.value.address}</td>
         </tr>
     </c:forEach>
     </tbody>
+    <a href="<c:url value='/create'/>">Добавить инцидент</a>
 </table>
 </body>
 </html>

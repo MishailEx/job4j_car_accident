@@ -9,12 +9,6 @@ public class Accident {
     private String address;
     private AccidentType type;
 
-//    public Accident(String name, String text, String address) {
-//        this.name = name;
-//        this.text = text;
-//        this.address = address;
-//    }
-
     public int getId() {
         return id;
     }

@@ -7,12 +7,13 @@ public class Accident {
     private String name;
     private String text;
     private String address;
+    private AccidentType type;
 
-    public Accident(String name, String text, String address) {
-        this.name = name;
-        this.text = text;
-        this.address = address;
-    }
+//    public Accident(String name, String text, String address) {
+//        this.name = name;
+//        this.text = text;
+//        this.address = address;
+//    }
 
     public int getId() {
         return id;
@@ -46,27 +47,36 @@ public class Accident {
         this.address = address;
     }
 
+    public AccidentType getAccidentType() {
+        return type;
+    }
+
+    public void setAccidentType(AccidentType accidentType) {
+        this.type = accidentType;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Accident accident = (Accident) o;
-        return id == accident.id && Objects.equals(name, accident.name) && Objects.equals(text, accident.text) && Objects.equals(address, accident.address);
+        return id == accident.id && Objects.equals(name, accident.name) && Objects.equals(text, accident.text) && Objects.equals(address, accident.address) && Objects.equals(type, accident.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, text, address);
+        return Objects.hash(id, name, text, address, type);
     }
 
     @Override
     public String
     toString() {
-        return "Accident{ id=" + id + ", name='" + name + '\'' + ", text='" + text + '\''
-                + ", address='" + address + '\'' + '}';
+        return "Accident{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", text='" + text + '\'' +
+                ", address='" + address + '\'' +
+                ", accidentType=" + type +
+                '}';
     }
 }

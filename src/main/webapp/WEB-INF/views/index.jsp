@@ -28,6 +28,7 @@
         <th scope="col">Имя пользователя</th>
         <th scope="col">Текст заявления</th>
         <th scope="col">Адрес правонарушения</th>
+        <th scope="col">Вид правонарушения</th>
         <th scope="col">Редактировать</th>
     </tr>
     </thead>
@@ -38,6 +39,7 @@
             <td>${acc.value.name}</td>
             <td>${acc.value.text}</td>
             <td>${acc.value.address}</td>
+            <td>${acc.value.accidentType.name}</td>
             <td><a href="<c:url value='/update?id=${acc.key}'/>">Изменить</a></td>
         </tr>
     </c:forEach>

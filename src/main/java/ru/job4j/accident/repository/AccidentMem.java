@@ -11,14 +11,6 @@ public class AccidentMem {
     private HashMap<Integer, Accident> accidents = new HashMap<>();
     private AtomicInteger num = new AtomicInteger(0);
 
-    private static final class Lazy {
-        private static final AccidentMem INST = new AccidentMem();
-    }
-
-    public static AccidentMem instOf() {
-        return AccidentMem.Lazy.INST;
-    }
-
     public HashMap<Integer, Accident> getAccidents() {
         return accidents;
     }

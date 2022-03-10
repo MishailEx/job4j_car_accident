@@ -8,7 +8,11 @@ import java.util.HashMap;
 
 @Service
 public class AccidentService implements AccidentStore {
-    private AccidentMem accidents = AccidentMem.instOf();
+    private AccidentMem accidents;
+
+    public AccidentService(AccidentMem accidents) {
+        this.accidents = accidents;
+    }
 
     @Override
     public void create(Accident accident) {

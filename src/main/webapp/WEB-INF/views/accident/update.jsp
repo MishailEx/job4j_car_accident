@@ -16,8 +16,16 @@
             <td>Адресс:</td>
             <td><input type='text' name='address' value="${accident.address}"></td>
         </tr>
+        <td>
+        <td>Вид правонарушения</td>
+        <select name='type.id'>
+            <c:forEach var="type" items="${types}">
+                <option value="${type.id}">${type.name}</option>
+            </c:forEach>
+        </select>
+        </td>
         <tr>
-            <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
+            <td colspan='2'><input name="submit" type="submit" value="Сохранить"/></td>
         </tr>
     </table>
 </form>

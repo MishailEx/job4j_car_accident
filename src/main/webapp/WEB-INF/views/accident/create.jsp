@@ -10,17 +10,16 @@
             <td><input type='text' name='name'></td>
         </tr>
         <tr>
-            <td>Название:</td>
+            <td>Описание инцидента:</td>
             <td><input type='text' name='text'></td>
         </tr>
         <tr>
             <td>Адресс:</td>
             <td><input type='text' name='address'></td>
         </tr>
-        <tr>
             <td>Вид правонарушения</td>
             <td>
-                <select name="type.id">
+                <select name='type.id'>
                     <c:forEach var="type" items="${types}" >
                         <option value="${type.id}">${type.name}</option>
                     </c:forEach>

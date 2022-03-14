@@ -9,9 +9,10 @@ import java.util.List;
 import java.util.Set;
 
 public interface AccidentStore {
-    void create(Accident accident);
-    HashMap<Integer, Accident> getAllAccident();
+    void create(Accident accident, String[] idRules);
+    HashMap<Integer, Accident> getAll();
     Accident findById(int id);
+    void updateAccident(int id, Accident accident);
     List<AccidentType> accidentTypes();
     List<Rule> rules();
 }

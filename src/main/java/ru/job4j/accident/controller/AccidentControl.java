@@ -13,9 +13,7 @@ import ru.job4j.accident.service.AccidentService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class AccidentControl {
@@ -37,7 +35,7 @@ public class AccidentControl {
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         Accident acc = setParam(req, accident);
-        accidentService.create(acc);
+        accidentService.create(acc, req.getParameterValues("rIds"));
         return "redirect:/";
     }
 

@@ -7,6 +7,8 @@ import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.AccidentJdbcTemplate;
 import ru.job4j.accident.repository.AccidentMem;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -20,7 +22,8 @@ public class AccidentService implements AccidentStore {
     }
 
     @Override
-    public void create(Accident accident, String[] idRules, int idType) {
+    public void create(Accident accident, HttpServletRequest req) {
+        int idType = Integer.parseInt(req.getParameter("type.id")) - 1;
         accidents.setType(idType, accident);
         accidents.save(accident);
     }
@@ -50,6 +53,18 @@ public class AccidentService implements AccidentStore {
     @Override
     public List<Rule> rules() {
         return accidents.getRules();
+    }
+
+    @Override
+    public Accident setRules(HttpServletRequest req, Accident accident) {
+        String[] ids = req.getParameterValues("rIds");
+        List<Rule> rsl = new ArrayList<>();
+        for (String s: ids) {
+            int idR = Integer.parseInt(s) - 1;
+            rsl.add(rules().get(idR));
+        }
+        accident.setRules(rsl);
+        return accident;
     }
 
 

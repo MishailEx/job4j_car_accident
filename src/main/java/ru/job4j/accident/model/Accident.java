@@ -1,17 +1,27 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
+@Entity
+@Table(name = "accident")
 public class Accident {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String text;
     private String address;
+    @ManyToOne
+    @JoinColumn(name = "typeId")
     private AccidentType type;
-    private List<Rule> rules;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Rule> rules = new ArrayList<>();
 
+    public Accident() {
+    }
 
     public int getId() {
         return id;

@@ -3,10 +3,12 @@ package ru.job4j.accident.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.AccidentMem;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AccidentService implements AccidentStore {
@@ -40,5 +42,10 @@ public class AccidentService implements AccidentStore {
     @Override
     public List<AccidentType> accidentTypes() {
         return accidents.getAccidentTypeList();
+    }
+
+    @Override
+    public List<Rule> rules() {
+        return accidents.getRules();
     }
 }

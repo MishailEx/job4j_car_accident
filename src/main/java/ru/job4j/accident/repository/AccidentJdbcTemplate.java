@@ -18,10 +18,9 @@ public class AccidentJdbcTemplate {
         this.jdbc = jdbc;
     }
 
-    public Accident save(Accident accident, String[] idRules) {
+    public Accident save(Accident accident) {
         jdbc.update("insert into accident (name, text, address, typeId) values (?, ?, ?, ?)",
                 accident.getName(), accident.getText(), accident.getAddress(), accident.getAccidentType().getId());
-
         return accident;
     }
 
@@ -85,6 +84,11 @@ public class AccidentJdbcTemplate {
             jdbc.update("insert into accident_rules (accidentId, rulesId) values (?, ?)",
                     accident.getId(), r.getId());
         }
+        return accident;
+    }
+
+    public Accident setType(int id, Accident accident) {
+        accident.setAccidentType(getAccidentTypeList().get(id));
         return accident;
     }
 }

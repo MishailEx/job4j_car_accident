@@ -28,6 +28,11 @@ public class AccidentMem {
         return accidents;
     }
 
+    public Accident setType(int id, Accident accident) {
+        accident.setAccidentType(accidentTypeList.get(id));
+        return accident;
+    }
+
     public AtomicInteger getNum() {
         return num;
     }

@@ -34,8 +34,8 @@ public class AccidentControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
-        Accident acc = setParam(req, accident);
-        accidentService.create(acc, req.getParameterValues("rIds"));
+        int idType = Integer.parseInt(req.getParameter("type.id")) - 1;
+        accidentService.create(accident, req.getParameterValues("rIds"), idType);
         return "redirect:/";
     }
 
@@ -52,14 +52,12 @@ public class AccidentControl {
     @PostMapping("/update")
     public String update(HttpServletRequest req, @ModelAttribute Accident accident) {
         int id = Integer.parseInt(req.getParameter("id"));
-        Accident acc = setParam(req, accident);
-        accidentService.updateAccident(id, acc);
+        int idType = Integer.parseInt(req.getParameter("type.id")) - 1;
+        accidentService.updateAccident(id, accident, idType);
         return "redirect:/";
     }
 
     private Accident setParam(HttpServletRequest req, Accident accident) {
-        int idType = Integer.parseInt(req.getParameter("type.id")) - 1;
-        accident.setAccidentType(accidentService.accidentTypes().get(idType));
         String[] ids = req.getParameterValues("rIds");
         List<Rule> rules = new ArrayList<>();
         for (String s: ids) {

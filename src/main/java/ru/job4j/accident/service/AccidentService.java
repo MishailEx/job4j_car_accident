@@ -20,8 +20,9 @@ public class AccidentService implements AccidentStore {
     }
 
     @Override
-    public void create(Accident accident, String[] idRules) {
-        accidents.save(accident, idRules);
+    public void create(Accident accident, String[] idRules, int idType) {
+        accidents.setType(idType, accident);
+        accidents.save(accident);
     }
 
     @Override
@@ -35,8 +36,9 @@ public class AccidentService implements AccidentStore {
     }
 
     @Override
-    public void updateAccident(int id, Accident accident) {
+    public void updateAccident(int id, Accident accident, int idType) {
         accident.setId(id);
+        accidents.setType(idType, accident);
         accidents.update(accident);
     }
 
@@ -49,4 +51,6 @@ public class AccidentService implements AccidentStore {
     public List<Rule> rules() {
         return accidents.getRules();
     }
+
+
 }

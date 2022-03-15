@@ -5,14 +5,11 @@ import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.AccidentHibernate;
-import ru.job4j.accident.repository.AccidentJdbcTemplate;
-import ru.job4j.accident.repository.AccidentMem;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class AccidentService implements AccidentStore {
@@ -21,6 +18,7 @@ public class AccidentService implements AccidentStore {
     public AccidentService(AccidentHibernate accidents) {
         this.accidents = accidents;
     }
+
 
     @Override
     public void create(Accident accident, HttpServletRequest req) {
@@ -56,6 +54,7 @@ public class AccidentService implements AccidentStore {
         return accidents.getRules();
     }
 
+
     @Override
     public Accident setRules(HttpServletRequest req, Accident accident) {
         String[] ids = req.getParameterValues("rIds");
@@ -67,6 +66,4 @@ public class AccidentService implements AccidentStore {
         accident.setRules(rsl);
         return accident;
     }
-
-
 }

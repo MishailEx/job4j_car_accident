@@ -52,6 +52,7 @@ public class AccidentControl {
     public String update(HttpServletRequest req, @ModelAttribute Accident accident) {
         int id = Integer.parseInt(req.getParameter("id"));
         int idType = Integer.parseInt(req.getParameter("type.id")) - 1;
+        accidentService.setRules(req, accident);
         accidentService.updateAccident(id, accident, idType);
         return "redirect:/";
     }

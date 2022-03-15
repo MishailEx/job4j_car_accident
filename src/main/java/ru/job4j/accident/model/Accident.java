@@ -17,7 +17,10 @@ public class Accident {
     @ManyToOne
     @JoinColumn(name = "typeId")
     private AccidentType type;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "accident_rules",
+            joinColumns = @JoinColumn(name = "accidentId"),
+            inverseJoinColumns = @JoinColumn(name = "rulesId"))
     private List<Rule> rules = new ArrayList<>();
 
     public Accident() {

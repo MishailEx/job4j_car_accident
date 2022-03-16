@@ -32,11 +32,11 @@ public class HbmConfig {
         return ds;
     }
 
-    @Bean
+
     public LocalSessionFactoryBean sessionFactory(@Value("${hibernate.dialect}") String dialect, DataSource ds) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(ds);
-        sessionFactory.setPackagesToScan("ru.job4j.accident");
+        sessionFactory.setPackagesToScan("ru.job4j.accidenta");
         Properties cfg = new Properties();
         cfg.setProperty("hibernate.dialect", dialect);
         cfg.setProperty("hibernate.hbm2ddl.auto", "update");

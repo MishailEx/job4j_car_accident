@@ -12,7 +12,7 @@ public class Rule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "accident_rules",
             joinColumns = @JoinColumn(name = "rulesId"),
             inverseJoinColumns = @JoinColumn(name = "accidentId"))
@@ -47,8 +47,12 @@ public class Rule {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Rule rule = (Rule) o;
         return id == rule.id;
     }
@@ -56,5 +60,10 @@ public class Rule {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Rule{ id=" + id + ", name='" + name + '}';
     }
 }

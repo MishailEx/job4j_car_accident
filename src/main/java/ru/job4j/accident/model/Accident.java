@@ -17,7 +17,7 @@ public class Accident {
     @ManyToOne
     @JoinColumn(name = "typeId")
     private AccidentType type;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "accident_rules",
             joinColumns = @JoinColumn(name = "accidentId"),
             inverseJoinColumns = @JoinColumn(name = "rulesId"))
@@ -76,8 +76,12 @@ public class Accident {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Accident accident = (Accident) o;
         return id == accident.id && Objects.equals(name, accident.name) && Objects.equals(text, accident.text) && Objects.equals(address, accident.address) && Objects.equals(type, accident.type);
     }
@@ -90,12 +94,7 @@ public class Accident {
     @Override
     public String
     toString() {
-        return "Accident{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", text='" + text + '\'' +
-                ", address='" + address + '\'' +
-                ", accidentType=" + type +
-                '}';
+        return "Accident{ id=" + id + ", name='" + name + '\'' + ", text='" + text + '\''
+                + ", address='" + address + '\'' + ", accidentType=" + type + '}';
     }
 }

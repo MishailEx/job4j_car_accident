@@ -10,6 +10,7 @@
 
   <properties>
     <spring.version>5.3.14</spring.version>
+    <springsec.version>5.6.1</springsec.version>
   </properties>
 
   <dependencies>
@@ -110,6 +111,23 @@
       <artifactId>junit</artifactId>
       <version>RELEASE</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${springsec.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${springsec.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${springsec.version}</version>
     </dependency>
   </dependencies>
 

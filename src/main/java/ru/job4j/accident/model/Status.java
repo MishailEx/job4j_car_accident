@@ -4,18 +4,14 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "accident_type")
-public class AccidentType {
+@Table(name = "status")
+public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
-    public static AccidentType of(int id, String name) {
-        AccidentType type = new AccidentType();
-        type.id = id;
-        type.name = name;
-        return type;
+    public Status() {
     }
 
     public int getId() {
@@ -38,12 +34,20 @@ public class AccidentType {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccidentType that = (AccidentType) o;
-        return id == that.id;
+        Status status = (Status) o;
+        return id == status.id && Objects.equals(name, status.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Status{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

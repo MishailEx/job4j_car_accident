@@ -18,36 +18,91 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+    <style>
+        <%@include file='css/style.css' %>
+    </style>
     <title>Accident</title>
 </head>
 <body>
-<div>
-    Login as : ${user.username}
-</div>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Номер</th>
-        <th scope="col">Имя пользователя</th>
-        <th scope="col">Текст заявления</th>
-        <th scope="col">Адрес правонарушения</th>
-        <th scope="col">Вид правонарушения</th>
-        <th scope="col">Редактировать</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="acc" items="${accidents}">
+<c:if test="${user.authorities == '[ROLE_ADMIN]'}">
+    <div class="headIndex">
+        <div><a href="/logout" class="btn">Выход</a></div>
+        <div><input class="btnUser"value="${user.username}" disabled></div>
+    </div>
+    <table class="table">
+        <thead>
         <tr>
-            <td>${acc.key}</td>
-            <td>${acc.value.name}</td>
-            <td>${acc.value.text}</td>
-            <td>${acc.value.address}</td>
-            <td>${acc.value.accidentType.id}</td>
-            <td><a href="<c:url value='/update?id=${acc.key}'/>">Изменить</a></td>
+            <th scope="col">Имя пользователя</th>
+            <th scope="col">Текст заявления</th>
+            <th scope="col">Адрес правонарушения</th>
+            <th scope="col">Фото</th>
+            <th scope="col">Вид правонарушения</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Редактировать</th>
         </tr>
-    </c:forEach>
-    </tbody>
-    <a href="<c:url value='/create'/>">Добавить инцидент</a>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach var="acc" items="${accidents}">
+            <tr>
+                <td>${acc.value.name}</td>
+                <td>${acc.value.text}</td>
+                <td>${acc.value.address}</td>
+                <td>
+                    <c:forEach var="img" items="${acc.value.images}">
+                        <img style="margin: 5px" src="http://localhost:${port}/downloadImg?nameImg=${img.name}"
+                             width="50px" height="50px">
+                    </c:forEach>
+                </td>
+                <td>${acc.value.accidentType.name}</td>
+                <td>${acc.value.status.name}</td>
+                <td><a href="<c:url value='/update?id=${acc.key}'/>">Изменить</a></td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</c:if>
+<c:if test="${user.authorities != '[ROLE_ADMIN]'}">
+    <div class="headIndex">
+        <div><a href="/logout" class="btn">Выход</a></div>
+        <div><a class="btn" href="<c:url value='/create'/>">Добавить инцидент</a></div>
+        <div><input class="btnUser"value="${user.username}" disabled></div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th style="width: 10%" scope="col"><p>Тема обращения</p></th>
+            <th scope="col"><p>Текст заявления</p></th>
+            <th scope="col"><div><p>Адрес правонарушения</p></div></th>
+            <th scope="col"><p>Фото</p></th>
+            <th style="width: 10%;" scope="col"><p>Вид правонарушения</p></th>
+            <th scope="col"><p>Статус</p></th>
+            <th style="width: 5%" scope="col"><p>Редактировать</p></th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="acc" items="${accidents}">
+            <tr>
+                <td>${acc.value.name}</td>
+                <td>${acc.value.text}</td>
+                <td>${acc.value.address}</td>
+                <td>
+                    <c:forEach var="img" items="${acc.value.images}">
+                        <img style="margin: 5px" src="http://localhost:${port}/downloadImg?nameImg=${img.name}"
+                             width="50px" height="50px">
+                    </c:forEach>
+                </td>
+                <td>${acc.value.accidentType.name}</td>
+                <td>${acc.value.status.name}</td>
+                <c:if test="${acc.value.author == user.username}">
+                    <td><a href="<c:url value='/update?id=${acc.key}'/>">Изменить</a></td>
+                </c:if>
+                <c:if test="${acc.value.author != user.username}">
+                    <td></td>
+                </c:if>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</c:if>
 </body>
 </html>

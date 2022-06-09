@@ -1,11 +1,28 @@
-Выполненно:
-0. Spring MVC 
-   
-Не выполненно:
-1. Загрузка данных в вид
-2. IndexControl. Таблица и вид.
-3. @ModelAttribute. Создание инцидента. 
-   3.1. @RequestParam. Форма редактирования
-4. Form с композиционным объектом
-5. Form с аргегационными объектами
-6. Сборка war  
+![ScreenShot](images/login.jpg)
+![ScreenShot](images/index.jpg)
+![ScreenShot](images/updateAdmin.jpg)
+![ScreenShot](images/create.jpg)
+
+Описание:
+Сервис для размещения и обработки автонарушений
+В системе существуют две роли. Обычные пользователи и автоинспекторы.
+Пользователь добавляет описание автонарушения.
+В заявлении указывает: адрес, описание нарушения и фотографию нарушения.
+У заявки есть статус. Принята. Отклонена. Завершена.
+
+
+Используемые технологии:
+- Servlet
+- Spring MVC
+- Spring Security & JWT authorization
+- Spring jdbc (заменен на Spring Data)
+- Hibernate (заменен на Spring Data)
+- Spring Data JPA
+- PostgreSQL
+- Liquibase
+- JSP (JavaServer Pages)
+- JSTL (JSP Standard Tag Library)
+- CSS 
+- Log4j
+
+

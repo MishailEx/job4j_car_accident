@@ -1,7 +1,6 @@
 package ru.job4j.accident.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,11 +11,12 @@ public class Rule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(name = "accident_rules",
-            joinColumns = @JoinColumn(name = "rulesId"),
-            inverseJoinColumns = @JoinColumn(name = "accidentId"))
-    private List<Accident> accidents = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "rules")
+    private List<Accident> accidents;
+
+    public Rule() {
+    }
 
     public static Rule of(int id, String name) {
         Rule rule = new Rule();
